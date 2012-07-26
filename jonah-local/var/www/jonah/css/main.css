@@ -1,0 +1,90 @@
+	body {FONT-SIZE: 9pt; COLOR: #344495; FONT-FAMILY:  Arial; background-color:#f8f8f8; margin:0px; width:95%}
+	p {FONT-SIZE: 9pt; COLOR: #808080; FONT-FAMILY:  Arial;}
+	td {FONT-SIZE: 9pt; COLOR: #808080; FONT-FAMILY:  Arial; background-color: #f1f1f1;		}
+	.td {FONT-SIZE: 9pt; COLOR: #808080; FONT-FAMILY:  Arial; background-color: #f1f1f1;}	
+	a {color: #ff9900; text-decoration:none;}
+	a:visited {color:#ff9900;}
+	a:hover {color:#ffcc00 ; text-decoration:underline;}
+	.disclaimer {FONT-SIZE: 7pt; COLOR: silver; FONT-FAMILY: Verdana;}
+	.first {margin-left:50px;margin-right:25px;}
+	.quote {font-size:12pt; font-weight:bold;}	
+	.quoted {font-size:12pt; font-weight:bold;}	
+	
+	.rulea {width:98%; height:5px; background-color:#abafb0;;border-bottom:1px solid #525355;}
+	.ruleb {width:98%;align:center;border-top:1px solid #cecece;}
+	
+	.rule1 {width:100%;align:center;border-bottom:1px solid #bfc4c8;}
+	.rule2 {width:100%;align:center;border-top:1px solid #fafbfd;}
+	
+	.others {width:200px;align:right;padding:2px;margin-right:25px;float:right;}
+	a.others {background-color:yellow;}
+	td.definition {font-size:9pt;}
+	.definition {font-size:9pt;}
+	td.idwidth {width:200;}
+	a.toolbar {font-weight:bold; color:white;}
+	a.toolbar:visited {color:white;}
+	a.toolbar:hover {color:#ffcc00; text-decoration:none;}
+	.jonahtable {padding:10px; border:1px solid silver; padding-top:5px;}
+	.snippet { padding:2px; width:150; background:#ffffff; margin:5px; border: 1px solid gray;}
+	.red {border: 1px solid red;padding:3px;}
+	.code {border:1px solid silver; padding:5px; color: #ffccoo; font-size:10pt; font: "Courier New", Courier, monospace; width:400; background-color:white; }
+	.important {border:1px solid silver; padding:5px; font-size:10pt; background:white;}
+	.countdown {font-size:12pt;}
+	tr.tabhead-upload td{background-color: #CCC ; font-weight:bold; color:black; text-align:center; padding:2 8 2 8;}
+	tr.tabhead-admin td{background-color:#CCCCCC; font-weight:bold; color:black; text-align:center;}
+	tr.tabhead-transcode td{background-color: #FC6; font-weight:bold; color:black; text-align:center; padding:2 8 2 8;}
+	tr.alternate1 {background-color:#ffffee;}
+	td.alternate2 {background-color:#ffffff;}
+	select.transcoding {border:1px solid red; color:red;}
+	.transcoding {border:1px solid #33FF33; font-color:#666666; }
+	.debug {display:none; visibility:collapse;}
+	.softbutton {border:1px solid silver;font:9pt;disabled:true;}
+	.hardbutton {border:1px solid silver;font:9pt;}
+	.ftpstatus {align:right; valign:bottom;}
+	.adinput{border:1px solid silver; width:500; padding: 0 5 0 5; color:#666666;}
+	.profileeditor {border:1px solid silver; padding: 5 5 5 5; color:#666666; }
+	tr.debug {display:hidden;visibility:collapse;}
+	tr.transcoding {border-bottom: solid 1px black;}
+	.troubleshoot {font-style:italic; font-weight:bold; color:red;}
+	
+	.td-path {width:140;vertical-align:text-top;}
+	.td-name {width:150;vertical-align:text-top;}
+	.td-size {width:75;vertical-align:text-top;}
+	.td-timestamp {width:135;vertical-align:text-top;}
+	.td-duration {width:75;vertical-align:text-top;}
+	.td-ffmpeg {width:;vertical-align:text-top;}
+	.td-video {width:140;vertical-align:text-top;}
+	.td-audio {width:140;vertical-align:text-top;}
+	.td-status {width:250;vertical-align:text-top;}
+	.td-icon {width:25;vertical-align:text-top;}
+	
+				/* Custom dialog styles */
+			#popup_container.style_1 {
+				font-family: Georgia, serif;
+				color: #A4C6E2;
+				background: #005294;
+				border-color: #113F66;
+			}
+			
+			#popup_container.style_1 #popup_title {
+				color: #FFF;
+				font-weight: normal;
+				text-align: left;
+				background: #76A5CC;
+				border: solid 1px #005294;
+				padding-left: 1em;
+			}
+			
+			#popup_container.style_1 #popup_content {
+				background: none;
+			}
+			
+			#popup_container.style_1 #popup_message {
+				padding-left: 0em;
+			}
+			
+			#popup_container.style_1 INPUT[type='button'] {
+				border: outset 2px #76A5CC;
+				color: #A4C6E2;
+				background: #3778AE;
+			}									

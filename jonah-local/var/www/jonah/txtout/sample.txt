@@ -1,0 +1,28 @@
+ffmpeg version 0.10.4-6:0.10.4-0ubuntu0jon2 Copyright (c) 2000-2012 the FFmpeg developers
+  built on Jun 12 2012 23:02:05 with gcc 4.6.3
+  configuration: --extra-version='6:0.10.4-0ubuntu0jon2' --arch=amd64 --prefix=/usr --libdir=/usr/lib/x86_64-linux-gnu --disable-stripping --enable-vaapi --enable-vdpau --enable-bzlib --enable-gnutls --enable-libgsm --enable-libschroedinger --enable-libspeex --enable-libtheora --enable-libvorbis --enable-pthreads --enable-zlib --enable-libvpx --enable-runtime-cpudetect --enable-libfreetype --enable-libpulse --enable-vaapi --enable-librtmp --enable-gpl --enable-postproc --enable-x11grab --enable-libcdio --enable-version3 --enable-libdc1394 --shlibdir=/usr/lib/x86_64-linux-gnu --enable-shared --disable-static
+  libavutil      51. 35.100 / 51. 35.100
+  libavcodec     53. 61.100 / 53. 61.100
+  libavformat    53. 32.100 / 53. 32.100
+  libavdevice    53.  4.100 / 53.  4.100
+  libavfilter     2. 61.100 /  2. 61.100
+  libswscale      2.  1.100 /  2.  1.100
+  libswresample   0.  6.100 /  0.  6.100
+  libpostproc    52.  0.100 / 52.  0.100
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from '/home/sony/sample.mp4':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    creation_time   : 1970-01-01 00:00:00
+    encoder         : Lavf52.78.3
+  Duration: 00:03:08.24, start: 0.000000, bitrate: 541 kb/s
+    Stream #0:0(eng): Video: h264 (High) (avc1 / 0x31637661), yuv420p, 768x432, 407 kb/s, 23.98 fps, 23.98 tbr, 1199 tbn, 47.96 tbc
+    Metadata:
+      creation_time   : 1970-01-01 00:00:00
+      handler_name    : VideoHandler
+    Stream #0:1(eng): Audio: aac (mp4a / 0x6134706D), 44100 Hz, stereo, s16, 127 kb/s
+    Metadata:
+      creation_time   : 1970-01-01 00:00:00
+      handler_name    : 
+At least one output file must be specified

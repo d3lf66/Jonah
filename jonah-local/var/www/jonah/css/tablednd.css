@@ -1,0 +1,27 @@
+.tDnD_whileDrag {
+    background-color: #FFFF00;
+	border:1px solid red;
+}
+
+tr.alt td {
+    background-color: #fffffe;
+}
+
+tr.myDragClass td {
+    color: yellow;
+    background-color: black;
+	border:1px solid red;
+}
+
+td.dragHandle {
+border:1px solid black;
+   
+}
+
+td.showDragHandle {
+	background-image: url(/jonah/images/updown2.gif);
+	background-repeat: no-repeat;
+	background-position: left;
+	cursor: move;
+	border:1px dashed silver;
+}

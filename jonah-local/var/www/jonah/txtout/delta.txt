@@ -1,0 +1,17 @@
+ffmpeg version 0.10.4-6:0.10.4-0ubuntu0jon2 Copyright (c) 2000-2012 the FFmpeg developers
+  built on Jun 12 2012 23:02:05 with gcc 4.6.3
+  configuration: --extra-version='6:0.10.4-0ubuntu0jon2' --arch=amd64 --prefix=/usr --libdir=/usr/lib/x86_64-linux-gnu --disable-stripping --enable-vaapi --enable-vdpau --enable-bzlib --enable-gnutls --enable-libgsm --enable-libschroedinger --enable-libspeex --enable-libtheora --enable-libvorbis --enable-pthreads --enable-zlib --enable-libvpx --enable-runtime-cpudetect --enable-libfreetype --enable-libpulse --enable-vaapi --enable-librtmp --enable-gpl --enable-postproc --enable-x11grab --enable-libcdio --enable-version3 --enable-libdc1394 --shlibdir=/usr/lib/x86_64-linux-gnu --enable-shared --disable-static
+  libavutil      51. 35.100 / 51. 35.100
+  libavcodec     53. 61.100 / 53. 61.100
+  libavformat    53. 32.100 / 53. 32.100
+  libavdevice    53.  4.100 / 53.  4.100
+  libavfilter     2. 61.100 /  2. 61.100
+  libswscale      2.  1.100 /  2.  1.100
+  libswresample   0.  6.100 /  0.  6.100
+  libpostproc    52.  0.100 / 52.  0.100
+[mpegvideo @ 0x1910ec0] max_analyze_duration 5000000 reached at 5005000
+[mpegvideo @ 0x1910ec0] Estimating duration from bitrate, this may be inaccurate
+Input #0, mpegvideo, from '/home/sony/DELTA.MPG':
+  Duration: 00:00:00.04, bitrate: 104856 kb/s
+    Stream #0:0: Video: mpeg1video, yuv420p, 320x200 [SAR 1:1 DAR 8:5], 104857 kb/s, 23.98 fps, 23.98 tbr, 1200k tbn, 23.98 tbc
+At least one output file must be specified

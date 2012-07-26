@@ -1,0 +1,27 @@
+ffmpeg version 0.10.4-6:0.10.4-0ubuntu0jon2 Copyright (c) 2000-2012 the FFmpeg developers
+  built on Jun 12 2012 23:02:05 with gcc 4.6.3
+  configuration: --extra-version='6:0.10.4-0ubuntu0jon2' --arch=amd64 --prefix=/usr --libdir=/usr/lib/x86_64-linux-gnu --disable-stripping --enable-vaapi --enable-vdpau --enable-bzlib --enable-gnutls --enable-libgsm --enable-libschroedinger --enable-libspeex --enable-libtheora --enable-libvorbis --enable-pthreads --enable-zlib --enable-libvpx --enable-runtime-cpudetect --enable-libfreetype --enable-libpulse --enable-vaapi --enable-librtmp --enable-gpl --enable-postproc --enable-x11grab --enable-libcdio --enable-version3 --enable-libdc1394 --shlibdir=/usr/lib/x86_64-linux-gnu --enable-shared --disable-static
+  libavutil      51. 35.100 / 51. 35.100
+  libavcodec     53. 61.100 / 53. 61.100
+  libavformat    53. 32.100 / 53. 32.100
+  libavdevice    53.  4.100 / 53.  4.100
+  libavfilter     2. 61.100 /  2. 61.100
+  libswscale      2.  1.100 /  2.  1.100
+  libswresample   0.  6.100 /  0.  6.100
+  libpostproc    52.  0.100 / 52.  0.100
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from '/home/mtv/motion-detected.mp4':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 18743379
+    compatible_brands: mp42isom
+    creation_time   : 2011-09-13 13:08:21
+  Duration: 00:00:24.20, start: 0.000000, bitrate: 862 kb/s
+    Stream #0:0(eng): Audio: aac (mp4a / 0x6134706D), 44100 Hz, stereo, s16, 95 kb/s
+    Metadata:
+      creation_time   : 2011-09-13 13:08:21
+      handler_name    : Sound Media Handler
+    Stream #0:1(eng): Video: h264 (Main) (avc1 / 0x31637661), yuv420p, 720x576 [SAR 1:1 DAR 5:4], 763 kb/s, 15 fps, 15 tbr, 15 tbn, 30 tbc
+    Metadata:
+      creation_time   : 2011-09-13 13:08:21
+      handler_name    : Video Media Handler
+At least one output file must be specified
