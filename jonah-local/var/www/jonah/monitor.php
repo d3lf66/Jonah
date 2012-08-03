@@ -21,6 +21,7 @@
 	$allowed_xml_types = $config['allowedxmltypes'];					// set allowed xml suffixes
 	$minstowait = $config['minstowait'];								// how long to wait for xml before queuing for transcode
 	$orphanpath = $config['orphanpath'];								// path to orphans (non-media, non-xml)
+	$duration='unknown';
 	
 	if (!$voddrive) {echo ("error reading config.json<br />ending script to protect file structure"); break;}	// if config.json is corrupt, terminate script
 																

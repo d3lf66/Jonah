@@ -1,0 +1,7 @@
+{
+"pass1":"-r 12.5 -b 280k -c:v libx264 -pass 2",
+"pass2":"-r 25 -b 400k -c:v libx264 -pass 2",
+"pass3":"-r 25 -b 600k -c:v libx264 -pass 2",
+"pass4":"-r 25 -b 1000k -c:v libx264 -pass 2",
+"pass5":"-r 25 -b 1400k -c:v libx264 -pass 2"
+}

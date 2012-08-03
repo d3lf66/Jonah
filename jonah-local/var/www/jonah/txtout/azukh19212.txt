@@ -9,13 +9,16 @@ ffmpeg version 0.10.4-6:0.10.4-0ubuntu0jon2 Copyright (c) 2000-2012 the FFmpeg d
   libswscale      2.  1.100 /  2.  1.100
   libswresample   0.  6.100 /  0.  6.100
   libpostproc    52.  0.100 / 52.  0.100
-Input #0, asf, from '/home/sony/pink - who knew.wmv':
-  Metadata:
-    title           : RCA Label Group
-    WMFSDKVersion   : 9.00.00.2980
-    WMFSDKNeeded    : 0.0.0.0000
-    IsVBR           : 0
-  Duration: 00:03:35.52, start: 0.000000, bitrate: 467 kb/s
-    Stream #0:0(eng): Audio: wmav2 (a[1][0][0] / 0x0161), 44100 Hz, 2 channels, s16, 64 kb/s
-    Stream #0:1(eng): Video: wmv3 (Main) (WMV3 / 0x33564D57), yuv420p, 320x240, 400 kb/s, 25 tbr, 1k tbn, 1k tbc
+[mxf @ 0x7f4ec0] broken or empty index
+Input #0, mxf, from '/home/zebedee/azukh19212.mxf':
+  Duration: 00:20:21.00, start: 0.000000, bitrate: 39933 kb/s
+    Stream #0:0: Video: mpeg2video (4:2:2), yuv422p, 1920x1080 [SAR 1:1 DAR 16:9], 50000 kb/s, 25 fps, 25 tbr, 25 tbn, 50 tbc
+    Stream #0:1: Audio: pcm_s24le, 48000 Hz, 1 channels, s32, 1152 kb/s
+    Stream #0:2: Audio: pcm_s24le, 48000 Hz, 1 channels, s32, 1152 kb/s
+    Stream #0:3: Audio: pcm_s24le, 48000 Hz, 1 channels, s32, 1152 kb/s
+    Stream #0:4: Audio: pcm_s24le, 48000 Hz, 1 channels, s32, 1152 kb/s
+    Stream #0:5: Audio: pcm_s24le, 48000 Hz, 1 channels, s32, 1152 kb/s
+    Stream #0:6: Audio: pcm_s24le, 48000 Hz, 1 channels, s32, 1152 kb/s
+    Stream #0:7: Audio: pcm_s24le, 48000 Hz, 1 channels, s32, 1152 kb/s
+    Stream #0:8: Audio: pcm_s24le, 48000 Hz, 1 channels, s32, 1152 kb/s
 At least one output file must be specified

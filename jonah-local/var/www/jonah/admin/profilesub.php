@@ -3,22 +3,21 @@
 	 error_reporting(E_ALL);
 	 $formattedtime=date("F j, Y, g:i a");
 
-	$config = array();
-	$config['voddrive'] = $_POST['voddrive'];
-	$config['voduploaddir'] = $_POST['voduploaddir'];
-	$config['pathtoinspect'] = $_POST['pathtoinspect'];
-	$config['pathtoqueue'] = $_POST['pathtoqueue'];
-	$config['pathtoxml'] = $_POST['pathtoxml'];
-	$config['allowedvideotypes'] = $_POST['allowedvideotypes'];
-	$config['allowedxmltypes'] = $_POST['allowedxmltypes'];
-	$config['minstowait'] = $_POST['minstowait'];
-	$config['orphanpath'] = $_POST['orphanpath'];
-	$config['logpath'] = $_POST['logpath'];
-	$config['presetpath'] = $_POST['presetpath'];
-	$config['parallel'] = $_POST['parallel'];
-	$config['passes'] = $_POST['passes'];
-	$config['outputpath'] = $_POST['outputpath'];	
-	$config['9'] = $_POST['var9'];
+	$preset = array();
+	$preset['voddrive'] = $_POST['voddrive'];
+	$preset['voduploaddir'] = $_POST['voduploaddir'];
+	$preset['pathtoinspect'] = $_POST['pathtoinspect'];
+	$preset['pathtoqueue'] = $_POST['pathtoqueue'];
+	$preset['pathtoxml'] = $_POST['pathtoxml'];
+	$preset['allowedvideotypes'] = $_POST['allowedvideotypes'];
+	$preset['allowedxmltypes'] = $_POST['allowedxmltypes'];
+	$preset['minstowait'] = $_POST['minstowait'];
+	$preset['orphanpath'] = $_POST['orphanpath'];
+	$preset['logpath'] = $_POST['logpath'];
+	$preset['parallel'] = $_POST['parallel'];
+	$preset['passes'] = $_POST['passes'];
+	$preset['outputpath'] = $_POST['outputpath'];	
+	$preset['9'] = $_POST['var9'];
 
 //to decode
 // $config = json_decode($configString, true);	 
@@ -41,16 +40,16 @@
 <?
 echo ("Updating at ".$formattedtime." (by ".$config[9].")<br />");	
 $configString = json_encode($config);
-echo ("<table><tr><td class='code'>Writing admin.json file as: <br />".$configString."</td></tr></table>");
+echo ("<table><tr><td class='code'>Writing preset.json file as: <br />".$configString."</td></tr></table>");
 
 // sanity check variables here
 
 
 
-// write admin.json file
+// write $client-preset.json file
 
-file_put_contents('/var/www/jonah/admin/config.json', $configString); //write
-$verified=file_get_contents('/var/www/jonah/admin/config.json'); //read
+file_put_contents('/var/www/jonah/profiles/tvp-preset.json', $configString); //write
+$verified=file_get_contents('/var/www/jonah/profiles/tvp-preset.json'); //read
 
 echo ("<table><tr><td class='code'>Verifying saved file as:<br /> ".$verified."</td></tr></table>");
 

@@ -19,14 +19,18 @@ $minstowait = $config['minstowait'];
 $lastupdatedby = $config['9'];
 $orphanpath =  $config['orphanpath'];
 $logpath =  $config['logpath'];
-$parallel =  $config['parallel'];
-$passes =  $config['passes'];
+$parallel = $config['parallel'];
+$passes = $config['passes'];
+$outputpath = $config['outputpath'];
+$presetpath = $config['presetpath'];
 
 echo ($voddrive." <br />");
 echo ($voduploaddir." <br />");
 echo ($pathtoinspect." <br />");
 echo ($pathtoqueue." <br />");
 echo ($pathtoxml." <br />");
+echo ($outputpath." <br />");
+echo ($presetpath." <br />");
 echo ($allowed_video_types." <br />");
 echo ($allowed_xml_types." <br />");
 echo ($minstowait." <br />");
@@ -34,6 +38,7 @@ echo ($orphanpath." <br />");
 echo ($logpath." <br />");
 echo ($parallel." <br />");
 echo ($passes." <br />");
+
 echo ($lastupdatedby." <br />");
 ?>
 <a href="/jonah/admin/admin.php">return to admin</a>

@@ -3,10 +3,10 @@
 foreach(glob($voduploaddir.'*', GLOB_ONLYDIR) as $i)						// for each folder found in the 'voduploaddir' root ($i = '/home/sony' )
 	{ 
 	$watchfolder=$i."/";													// add trailing slash to folder
-	$client = strtoupper(str_replace($voduploaddir," ",$i));   
+	$client = strtoupper(str_replace($voduploaddir,"",$i));   
 	if (glob($watchfolder."*.*") != false)									// if files in upload folder
 		 {
-			echo ("<br /><table class='jonahtable' width='100%'><tr class='tabhead-upload'><td class='td-path'> Client </td><td class='td-name'> Filename </td><td class='td-size'> Size </td><td class='td-timestamp'> Timestamp </td><td class='td-duration'> Duration </td><td class='td-ffmpeg'>[debug]</td><td class='td-video'> Video </td><td class='td-audio'> Audio </td><td class='td-status'> Status </td><td class='td-icon'></td></tr>");	 
+			echo ("<br /><table class='jonahtable' width='100%'><tr class='tabhead-upload'><td class='td-path'> Client </td><td class='td-name'> Filename </td><td class='td-size'> Size </td><td class='td-timestamp'> Timestamp </td><td class='td-duration'> Duration </td><!--<td class='td-ffmpeg'>[debug]</td>--><td class='td-video'> Video </td><td class='td-audio'> Audio </td><td class='td-status'> Status </td><td class='td-icon'></td></tr>");	 
 		 
  			$filecount = count(glob($watchfolder."*.*"));
  			$filesfound = glob($watchfolder."*.*"); 						// get all files under watchfolder with a wildcard extension. (change for specific filetypes)
@@ -129,12 +129,13 @@ foreach(glob($voduploaddir.'*', GLOB_ONLYDIR) as $i)						// for each folder fou
 		
 				$add2queue['category'] 	= "TVP";
 				$add2queue['client'] 	= $client;
-				$add2queue['filename'] 	= $tempfile2tobemoved;
+				$add2queue['filename'] 	= str_replace(" ","_",$tempfile2tobemoved);		// filename (not suffix), in lower case
 				$add2queue['filesize'] 	= $videofilesize;		
 				$add2queue['timestamp'] = $videouploaded; 			
 				$add2queue['video'] 	= $filevideo;
 				$add2queue['audio'] 	= $fileaudio;
 				$add2queue['duration'] 	= $duration;
+				$add2queue['epgid'] 	= '';
 				$add2queue['transcodeState'] 	= 0;
 				
 		//		tidy up audio and video
@@ -198,7 +199,7 @@ foreach(glob($voduploaddir.'*', GLOB_ONLYDIR) as $i)						// for each folder fou
 	echo ("<td class='td-size'><span class='countdown'>".$videofilesize." Mb</span></td>"); 		// filesize 										// cleanup
 	echo ("<td class='td-timestamp'><span class='countdown'>".$videouploaded." GMT</span><br />".$howlongago."</td>"); 	// time last modified GMT 		// cleanup
 	echo ("<td class='td-duration'><span class='countdown'>".$duration."</span></td>");
-	echo ("<td class='td-ffmpeg'>[debug array]</td>");
+	//echo ("<td class='td-ffmpeg'>[debug array]</td>");
 	// echo ("<td class='td-ffmpeg'>debug array of ".$ffinfo."</td>"); 			// ffmpeg																// cleanup
 	// echo ("<td class='td-ffmpeg'>debug array of ".$ffprobe."</td>"); 		// ffprobe																	
   	echo ("<td class='td-video'>".$filevideo."</td>"); 												// ffmpeg output relevant to videofile 				// cleanup

@@ -2,7 +2,11 @@
 	 ini_set ("display_errors", "1");
 	 error_reporting(E_ALL);
 	 // temp storing on 37.188.116.67 (rackspace)
-	 $debug=1;															// debug = show working paths, variables etc (not currently implemented)
+	 $formattedtime=date("F j, Y, g:i a");
+	 $userip=$_SERVER['REMOTE_ADDR'];
+	 $debug=1;															// debug = show working paths, variables etc (not currently implemented)						
+	 $explodeID='*';													// used to explode json cos I cant be arsed to do multi-array
+	 $i=0;	
 	 $refreshtime=60;	 	 											// determines how often watchfolders get prodded
 	 $currenttime=date("U");											// get local time for use in detecting age of files
 	 // $formattedtime=date("F j, Y, g:i a");
@@ -12,18 +16,10 @@
 	$adminVar=file_get_contents('/var/www/jonah/admin/config.json'); 	//read admin variable from local json file (use mySql db later)
 	$config = json_decode($adminVar, true);								// json decode array
 	
-	$voddrive = $config['voddrive'];									// set disk array used for vod storage
-	$voduploaddir = $config['voduploaddir'];							// set disk path used for vod upload
-	$pathtoinspect = $config['pathtoinspect'];							// ffmpeg inspection text files go here (temp folder
-	$pathtoqueue = $config['pathtoqueue'];								// place files to be transcoded here
-	$pathtoxml = $config['pathtoxml'];									// place associated xml here
-	$allowed_video_types = $config['allowedvideotypes'];				// set allowed video types to process
-	$allowed_xml_types = $config['allowedxmltypes'];					// set allowed xml suffixes
-	$minstowait = $config['minstowait'];								// how long to wait for xml before queuing for transcode
-	$lastupdatedby = $config['9'];										// read IP address of last person to modify admin config file
-	
-	if (!$voddrive) {echo ("error reading config.json<br />ending script to protect file structure"); break;}	// if config.json is corrupt, terminate script
-																
+	$voddrive = $config['voddrive'];								// set disk array used for vod storage
+	$voduploaddir = $config['voduploaddir'];						// set disk path used for vod upload
+	$presetpath = $config['presetpath'];						// set disk path used for vod upload
+															
 	$diskfree=round((disk_free_space($voddrive)/1000000000),1);			// get disk-unused in Gbytes
 	$disktotal=round((disk_total_space($voddrive)/1000000000),1);		// get disk-size in Gbytes
 	$diskpercent = round(($diskfree/$disktotal*100));
@@ -45,292 +41,118 @@
 <td>
 
 <!-- // sidebar -->
-<? include ('/var/www/jonah/inc/sidebar.php'); ?>
+<? include ('/var/www/jonah/inc/sidebar2.php'); ?>
 
 </td>
 <td>
-
+<!--
 [debug: profile editor goes here]
 <br /><br />
 ffmpeg -i $input <br /><br />
 $profile=(" -r 25 -b 600k -s 640x360 -c:v libx264 -flags +loop -me_method hex -g 100 -keyint_min 100 -sc-threshold 0 -qcomp 0.6 -qmin 10 -qmax 51 -qdiff 4 -bf 0 -b_strategy 1 -i_qfactor 0.71 -cmp +chroma -subq 8 -me_range 16 -coder 0 -sc_threshold 40 -flags2 +bpyramid +wpred+mixed_refs-dct8x8+fastpskip -keyint_min 25 -refs 3 -trellis 1 -level 30 -directpred 1 -partitions -parti8x8-parti4x4-partp8x8- partp4x4-partb8x8 -threads 0 -acodec libfaac -ar 44100 -ab 96k -y")
 <br /><br />
+exec (ffmpeg -i $input $profile $pass-specific $output $fireandforget)
+-->
 
-exec (ffmpeg -i $input $profile $output)<br />
+<br />
 
+<form action='#' method="post">
+<select><option value='tvp'>TVP</option></select>&nbsp;<input type='submit' value=' select preset ' class='softbutton' /></form>
+</form>
 <br /><br />
 
-<form action='/jonah/admin/profilesub.php' method="post">
 <table class='jonahtable profileeditor'>
-<tr><td colspan='10'>Preset: TVP</td></tr>
-<!--
-<tr><td>&nbsp;</td><td>
-<textarea rows='10' cols='80' wrap='soft' class='profileeditor'> -r 25 -b 600k -s 640x360 -c:v libx264 -flags +loop -me_method hex -g 100 -keyint_min 100 -sc-threshold 0 -qcomp 0.6 -qmin 10 -qmax 51 -qdiff 4 -bf 0 -b_strategy 1 -i_qfactor 0.71 -cmp +chroma -subq 8 -me_range 16 -coder 0 -sc_threshold 40 -flags2 -flags2 +bpyramid +wpred+mixed_refs-dct8x8+fastpskip -keyint_min 25 -refs 3 -trellis 1 -level 30 -directpred 1 -partitions -parti8x8-parti4x4-partp8x8- partp4x4-partb8x8 -threads 0 -c:a libvo_aacenc -ar 44100 -ab 96k -y
-</textarea></td></tr>-->
+<tr><td colspan='13'>Preset: TVP</td></tr>
+<tr class='tabhead-admin'>
+<td>&nbsp;&nbsp; </td>
+<td>&nbsp;&nbsp; Video Codec &nbsp;&nbsp;</td>
+<td>&nbsp;&nbsp; Framerate &nbsp;&nbsp;</td>
+<td>&nbsp;&nbsp; Video Bitrate &nbsp;&nbsp;</td>
+<td>&nbsp;&nbsp; Resolution &nbsp;&nbsp;</td>
+<td>&nbsp;&nbsp; Keyframe &nbsp;&nbsp;</td>
+<td>&nbsp;&nbsp; Advanced Parameters 1 &nbsp;&nbsp;</td>
+<td>&nbsp;&nbsp; Audio Library &nbsp;&nbsp;</td>
+<td>&nbsp;&nbsp; Channels &nbsp;&nbsp;</td>
+<td>&nbsp;&nbsp; Sampling Freq &nbsp;&nbsp;</td>
+<td>&nbsp;&nbsp; Audio bitrate &nbsp;&nbsp;</td>
+<td>&nbsp;&nbsp; Advanced Parameters 2 &nbsp;&nbsp;</td>
+<td>&nbsp;&nbsp; Output Container &nbsp;&nbsp;</td>
+<td>&nbsp;&nbsp; Multipass &nbsp;&nbsp;</td>
+</tr>
 
-<tr><td>Audio only</td>
-<td><select name="video library">
-<option value="x264">x264</option>
-</select></td><td><select name="resolution">
-<option value="n/a">n/a</option>
-<option value="320x180">320x180</option>
-<option value="480x270">480x270</option>
-<option value="640x360">640x360</option>
-<option value="960x540">960x540</option>
-<option value="1280x720">1280x720</option>
-</select></td><td><select name="bitrate">
-<option value="n/a">n/a</option>
-<option value="280k">280K</option>
-<option value="400k">400K</option>
-<option value="600k">600K</option>
-<option value="800k">800K</option>
-<option value="1400k">1400K</option>
-</select></td><td><select name="profile">
-<option value="3.0">3.0 baseline</option>
-<option value="3.1">3.1 main</option>
-</select></td><td><select name="framerate">
-<option value="8.3">8.33</option>
-<option value="12.5">12.5</option>
-<option value="15">15</option>
-<option value="24">24</option>
-<option value="25">25</option>
-</select></td><td><select name="keyframe">
-<option value="100">4s</option>
-<option value="125">5s</option>
-<option value="250">10s</option>
-</select></td><td><select name="audiolib">
-<option value="libfaac">libfaac</option>
-<option value="libvo">libvo_aacenc</option>
-</select></td><td><select name="abitrate">
-<option value="32000">32k</option>
-<option value="56000">56k</option>
-<option value="96000">96k</option>
-<option value="128000">128k</option>
-</select></td><td><select name="sampling">
-<option value="22">22 Khz</option>
-<option value="44.1">44.1 Khz</option>
-<option value="48">48 Khz</option>
-</select></td><td><input type="text" width="300" class="adinput" name="addition" /></td></tr>
-<tr><td>Profile1</td>
-<td><select name="video library">
-<option value="x264">x264</option>
-</select></td><td><select name="resolution">
-<option value="n/a">n/a</option>
-<option value="320x180">320x180</option>
-<option value="480x270">480x270</option>
-<option value="640x360">640x360</option>
-<option value="960x540">960x540</option>
-<option value="1280x720">1280x720</option>
-</select></td><td><select name="bitrate">
-<option value="n/a">n/a</option>
-<option value="280k">280K</option>
-<option value="400k">400K</option>
-<option value="600k">600K</option>
-<option value="800k">800K</option>
-<option value="1400k">1400K</option>
-</select></td><td><select name="profile">
-<option value="3.0">3.0 baseline</option>
-<option value="3.1">3.1 main</option>
-</select></td><td><select name="framerate">
-<option value="8.3">8.33</option>
-<option value="12.5">12.5</option>
-<option value="15">15</option>
-<option value="24">24</option>
-<option value="25">25</option>
-</select></td><td><select name="keyframe">
-<option value="100">4s</option>
-<option value="125">5s</option>
-<option value="250">10s</option>
-</select></td><td><select name="audiolib">
-<option value="libfaac">libfaac</option>
-<option value="libvo">libvo_aacenc</option>
-</select></td><td><select name="abitrate">
-<option value="32000">32k</option>
-<option value="56000">56k</option>
-<option value="96000">96k</option>
-<option value="128000">128k</option>
-</select></td><td><select name="sampling">
-<option value="22">22 Khz</option>
-<option value="44.1">44.1 Khz</option>
-<option value="48">48 Khz</option>
-</select></td><td><input type="text" width="300" name="addition1" class="adinput" /></td></tr>
-<tr><td>Profile2</td>
-<td><select name="video library">
-<option value="x264">x264</option>
-</select></td><td><select name="resolution">
-<option value="n/a">n/a</option>
-<option value="320x180">320x180</option>
-<option value="480x270">480x270</option>
-<option value="640x360">640x360</option>
-<option value="960x540">960x540</option>
-<option value="1280x720">1280x720</option>
-</select></td><td><select name="bitrate">
-<option value="n/a">n/a</option>
-<option value="280k">280K</option>
-<option value="400k">400K</option>
-<option value="600k">600K</option>
-<option value="800k">800K</option>
-<option value="1400k">1400K</option>
-</select></td><td><select name="profile">
-<option value="3.0">3.0 baseline</option>
-<option value="3.1">3.1 main</option>
-</select></td><td><select name="framerate">
-<option value="8.3">8.33</option>
-<option value="12.5">12.5</option>
-<option value="15">15</option>
-<option value="24">24</option>
-<option value="25">25</option>
-</select></td><td><select name="keyframe">
-<option value="100">4s</option>
-<option value="125">5s</option>
-<option value="250">10s</option>
-</select></td><td><select name="audiolib">
-<option value="libfaac">libfaac</option>
-<option value="libvo">libvo_aacenc</option>
-</select></td><td><select name="abitrate">
-<option value="32000">32k</option>
-<option value="56000">56k</option>
-<option value="96000">96k</option>
-<option value="128000">128k</option>
-</select></td><td><select name="sampling">
-<option value="22">22 Khz</option>
-<option value="44.1">44.1 Khz</option>
-<option value="48">48 Khz</option>
-</select></td><td><input type="text" width="300" name="addition2" class="adinput" /></td></tr>
-<tr><td>Profile3</td>
-<td><select name="video library">
-<option value="x264">x264</option>
-</select></td><td><select name="resolution">
-<option value="n/a">n/a</option>
-<option value="320x180">320x180</option>
-<option value="480x270">480x270</option>
-<option value="640x360">640x360</option>
-<option value="960x540">960x540</option>
-<option value="1280x720">1280x720</option>
-</select></td><td><select name="bitrate">
-<option value="n/a">n/a</option>
-<option value="280k">280K</option>
-<option value="400k">400K</option>
-<option value="600k">600K</option>
-<option value="800k">800K</option>
-<option value="1400k">1400K</option>
-</select></td><td><select name="profile">
-<option value="3.0">3.0 baseline</option>
-<option value="3.1">3.1 main</option>
-</select></td><td><select name="framerate">
-<option value="8.3">8.33</option>
-<option value="12.5">12.5</option>
-<option value="15">15</option>
-<option value="24">24</option>
-<option value="25">25</option>
-</select></td><td><select name="keyframe">
-<option value="100">4s</option>
-<option value="125">5s</option>
-<option value="250">10s</option>
-</select></td><td><select name="audiolib">
-<option value="libfaac">libfaac</option>
-<option value="libvo">libvo_aacenc</option>
-</select></td><td><select name="abitrate">
-<option value="32000">32k</option>
-<option value="56000">56k</option>
-<option value="96000">96k</option>
-<option value="128000">128k</option>
-</select></td><td><select name="sampling">
-<option value="22">22 Khz</option>
-<option value="44.1">44.1 Khz</option>
-<option value="48">48 Khz</option>
-</select></td><td><input type="text" width="300" name="addition3" class="adinput" /></td></tr>
-<tr><td>Profile4</td>
-<td><select name="video library">
-<option value="x264">x264</option>
-</select></td><td><select name="resolution">
-<option value="n/a">n/a</option>
-<option value="320x180">320x180</option>
-<option value="480x270">480x270</option>
-<option value="640x360">640x360</option>
-<option value="960x540">960x540</option>
-<option value="1280x720">1280x720</option>
-</select></td><td><select name="bitrate">
-<option value="n/a">n/a</option>
-<option value="280k">280K</option>
-<option value="400k">400K</option>
-<option value="600k">600K</option>
-<option value="800k">800K</option>
-<option value="1400k">1400K</option>
-</select></td><td><select name="profile">
-<option value="3.0">3.0 baseline</option>
-<option value="3.1">3.1 main</option>
-</select></td><td><select name="framerate">
-<option value="8.3">8.33</option>
-<option value="12.5">12.5</option>
-<option value="15">15</option>
-<option value="24">24</option>
-<option value="25">25</option>
-</select></td><td><select name="keyframe">
-<option value="100">4s</option>
-<option value="125">5s</option>
-<option value="250">10s</option>
-</select></td><td><select name="audiolib">
-<option value="libfaac">libfaac</option>
-<option value="libvo">libvo_aacenc</option>
-</select></td><td><select name="abitrate">
-<option value="32000">32k</option>
-<option value="56000">56k</option>
-<option value="96000">96k</option>
-<option value="128000">128k</option>
-</select></td><td><select name="sampling">
-<option value="22">22 Khz</option>
-<option value="44.1">44.1 Khz</option>
-<option value="48">48 Khz</option>
-</select></td><td><input type="text" width="300" name="addition4" class="adinput" /></td></tr>
-<tr><td>Profile5</td>
-<td><select name="video library">
-<option value="x264">x264</option>
-</select></td><td><select name="resolution">
-<option value="n/a">n/a</option>
-<option value="320x180">320x180</option>
-<option value="480x270">480x270</option>
-<option value="640x360">640x360</option>
-<option value="960x540">960x540</option>
-<option value="1280x720">1280x720</option>
-</select></td><td><select name="bitrate">
-<option value="n/a">n/a</option>
-<option value="280k">280K</option>
-<option value="400k">400K</option>
-<option value="600k">600K</option>
-<option value="800k">800K</option>
-<option value="1400k">1400K</option>
-</select></td><td><select name="profile">
-<option value="3.0">3.0 baseline</option>
-<option value="3.1">3.1 main</option>
-</select></td><td><select name="framerate">
-<option value="8.3">8.33</option>
-<option value="12.5">12.5</option>
-<option value="15">15</option>
-<option value="24">24</option>
-<option value="25">25</option>
-</select></td><td><select name="keyframe">
-<option value="100">4s</option>
-<option value="125">5s</option>
-<option value="250">10s</option>
-</select></td><td><select name="audiolib">
-<option value="libfaac">libfaac</option>
-<option value="libvo">libvo_aacenc</option>
-</select></td><td><select name="abitrate">
-<option value="32000">32k</option>
-<option value="56000">56k</option>
-<option value="96000">96k</option>
-<option value="128000">128k</option>
-</select></td><td><select name="sampling">
-<option value="22">22 Khz</option>
-<option value="44.1">44.1 Khz</option>
-<option value="48">48 Khz</option>
-</select></td><td><input type="text" width="300" name="addition5" class="adinput" /></td></tr>
-<tr><td>&nbsp;</td><td colspan="9"><input type='submit' value='save profile' /></td></tr>
-</table>
+<?
+	$fullPreset=file_get_contents('/var/www/jonah/profiles/tvp-preset.json'); 				// 	replace by mySql record update (add item to bottom of queue)
+	$presetExplode=explode($explodeID,$fullPreset);
+	//echo ("fullPreset: ".$fullPreset."<br />");	
 
+	foreach($presetExplode as $presetPass)
+	{	
+		if (!$presetPass) 
+		{
+		// dont show before *
+		} 
+		else 
+		{
+			//echo ("Preset: ".$presetPass."<br />");	
+			$preset = json_decode($presetPass, true);
+ 			$i++ ;		// increase $i counter
+
+?>
+<form action='' name='line<? echo ($i); ?>' id='line<? echo ($i); ?>'>
+<tr>
+<td>&nbsp;<? echo ($i); ?>&nbsp;</td>
+<td><select class='prinput' name='-c:v'>
+<? 
+echo ("<option class='selected' value='".$preset['-c:v']."' selected>".$preset['-c:v']."</option>");
+?>
+<option value='libx264'>libx264</option><option value='none'>none</option></select></td>
+<td><select class='prinput' name='-r'>
+<? 
+echo ("<option class='selected value='".$preset['-r']."' selected>".$preset['-r']."</option>");
+?>
+<option value='8.33'>8.33</option><option value='12.5'>12.5</option><option value='15'>15</option><option value='24'>24</option><option value='25'>25</option><option value='29.97'>29.7</option></select></td>
+<td><input size='6' class='prinput' name='-b:v' value='<? echo ($preset['-b:v']); ?>'></input></td>
+<td><input size='10' class='prinput' name='-s' value='<? echo ($preset['-s']); ?>'></input></td>
+<td><input size='6' class='prinput' name='-g' value='<? echo ($preset['-g']); ?>'></input></td>
+<td><input class='prinput-long' type='text' name='addition1' value='<? echo ($preset['addition1']); ?>' /></td>
+<td><select class='prinput' name='-c:a'>
+<? 
+echo ("<option class='selected' value='".$preset['-c:a']."' selected>".$preset['-c:a']."</option>");
+?>
+<option value='libvo_aacenc'>libvo_aacenc</option><option value='libfaac'>libfaac</option><option value='none'>none</option></select></td>
+<td><select class='prinput' name='-ac'>
+<? 
+echo ("<option class='selected' value='".$preset['-ac']."' selected>".$preset['-ac']."</option>");
+?>
+<option value='1'>mono</option><option value='2'>stereo</option><option value='4'>4.0 surround</option><option value='5.1'>5.1 surround</option></select></td>
+<td><select class='prinput' name='-ar'>
+<? 
+echo ("<option class='selected' value='".$preset['-ar']."' selected>".$preset['-ar']."</option>");
+?>
+<option value='11000'>11000</option><option value='22050'>22050</option><option value='44100'>44100</option><option value='48000'>48000</option></select></td>
+<td><input size='6' class='prinput' value='<? echo ($preset['-b:a']); ?>' name='-b:a'></input></td>
+<td><input class='prinput-med' type='text' name='addition2' value='<? echo ($preset['addition2']); ?>' /></td>
+<td><select class='prinput' name='container'>
+<? 
+echo ("<option class='selected' value='".$preset['container']."' selected>".$preset['container']."</option>");
+?>
+<option value='mp4'>mp4</option><option value='aac'>aac</option><option value='f4v'>f4v</option></select></td>
+<td><input class='prinput' type='checkbox' name='2pass' value='<? echo ($preset['2pass']); ?>'<? if ($preset['2pass']) {echo " checked='yes'";} ?> /></td>
+</tr>
 </form>
 
+<? } // end if !presetPass
+	 } // end for each
+	 
+	 
+	 // now we need to add multiple forms into one string to submit
+?>
+
+<tr><td colspan='13'>&nbsp;</td></tr>
+<tr><td colspan='8'>&nbsp;</td><td><input type='submit' value='add profile' class='softbutton' disabled='disabled' /></td><td><input type='submit' value='update preset' class='softbutton' onClick='processProfileData()' /></td><td></td><td></td><td></td></tr>
+</table>
+
+<!-- document.forms["configForm"].submit(); -->
 <!-- // mockup for transcode queue -->
 <? // include ('/var/www/jonah/inc/queue-view.php'); ?>
 

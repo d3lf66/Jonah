@@ -41,11 +41,15 @@
 	.softbutton {border:1px solid silver;font:9pt;disabled:true;}
 	.hardbutton {border:1px solid silver;font:9pt;}
 	.ftpstatus {align:right; valign:bottom;}
-	.adinput{border:1px solid silver; width:500; padding: 0 5 0 5; color:#666666;}
+	.adinput{border:1px solid silver; width:500; padding:0 5 0 5; color:#666666;}
+	.prinput{border:1px solid silver; padding:0 5 0 5; color:#666666;}
+	.prinput-med{border:1px solid silver; width:200; padding:0 5 0 5; color:#666666;}
+	.prinput-long{border:1px solid silver; width:500; padding:0 5 0 5; color:#666666;}
 	.profileeditor {border:1px solid silver; padding: 5 5 5 5; color:#666666; }
 	tr.debug {display:hidden;visibility:collapse;}
 	tr.transcoding {border-bottom: solid 1px black;}
 	.troubleshoot {font-style:italic; font-weight:bold; color:red;}
+	.selected {background: #FFF; border:1px solid red; font-weight:bold;}
 	
 	.td-path {width:140;vertical-align:text-top;}
 	.td-name {width:150;vertical-align:text-top;}

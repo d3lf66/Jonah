@@ -12,6 +12,8 @@
 	$pathtoinspect = $config['pathtoinspect'];						// ffmpeg inspection text files go here (temp folder
 	$pathtoqueue = $config['pathtoqueue'];							// place files to be transcoded here
 	$pathtoxml = $config['pathtoxml'];								// place associated xml here
+	$outputpath = $config['outputpath'];							// place output path (ie fms vod folder) here	
+	$presetpath = $config['presetpath'];								// place associated xml her
 	$allowed_video_types = $config['allowedvideotypes'];			// set allowed video types to process
 	$allowed_xml_types = $config['allowedxmltypes'];				// set allowed xml suffixes
 	$minstowait = $config['minstowait'];							// how long to wait for xml before queuing for transcode
@@ -88,6 +90,8 @@
 <tr><td>root path to associated xml </td><td>&nbsp; </td><td><input name="pathtoxml" type='text'  class='adinput' value='<? echo ($pathtoxml);?>' /></td><td>&nbsp; </td><td> $pathtoxml</td><td><img src='/jonah/images/locked.png' onClick='showXml();this.src="/jonah/images/unlocked.png"' /></td></tr>
 <tr><td>root path to orphans </td><td>&nbsp; </td><td><input name="orphanpath" type='text' class='adinput' value='<? echo ($orphanpath);?>' /></td><td>&nbsp; </td><td> $orphanpath</td><td><img src='/jonah/images/locked.png' onClick='this.src="/jonah/images/unlocked.png"' /></td></tr>
 <tr><td>root path to transcode log </td><td>&nbsp; </td><td><input name="logpath" type='text' class='adinput' value='<? echo ($logpath);?>' /></td><td>&nbsp; </td><td> $logpath</td><td><img src='/jonah/images/locked.png' onClick='this.src="/jonah/images/unlocked.png"' /></td></tr>
+<tr><td>root path to vod output </td><td>&nbsp; </td><td><input name="outputpath" type='text' class='adinput' value='<? echo ($outputpath);?>' /></td><td>&nbsp; </td><td> $outputpath</td><td><img src='/jonah/images/locked.png' onClick='this.src="/jonah/images/unlocked.png"' /></td></tr>
+<tr><td>root path to presets </td><td>&nbsp; </td><td><input name="presetpath" type='text' class='adinput' value='<? echo ($presetpath);?>' /></td><td>&nbsp; </td><td> $presetpath</td><td><img src='/jonah/images/locked.png' onClick='this.src="/jonah/images/unlocked.png"' /></td></tr>
 
 <tr><td colspan='6'><span class='admintitle'>-- Config --</span></td></tr>
 

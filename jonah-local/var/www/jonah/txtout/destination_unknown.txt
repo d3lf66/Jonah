@@ -11,9 +11,9 @@ ffmpeg version 0.10.4-6:0.10.4-0ubuntu0jon2 Copyright (c) 2000-2012 the FFmpeg d
   libswscale      2.  1.100 /  2.  1.100
   libswresample   0.  6.100 /  0.  6.100
   libpostproc    52.  0.100 / 52.  0.100
-Input #0, mxf, from '/home/sony/zukh19213.mxf':
-  Duration: 00:19:45.00, start: 0.000000, bitrate: 52622 kb/s
-    Stream #0:0: Video: mpeg2video (4:2:2), yuv422p, 1920x1080 [SAR 1:1 DAR 16:9], 50000 kb/s, 25 fps, 25 tbr, 25 tbn, 50 tbc
-    Stream #0:1: Audio: pcm_s24le, 48000 Hz, 1 channels, s32, 1152 kb/s
-    Stream #0:2: Audio: pcm_s24le, 48000 Hz, 1 channels, s32, 1152 kb/s
+[mpeg4 @ 0x21c62e0] Invalid and inefficient vfw-avi packed B frames detected
+Input #0, avi, from '/home/mtv/Destination Unknown.avi':
+  Duration: 00:03:02.88, start: 0.000000, bitrate: 2732 kb/s
+    Stream #0:0: Video: mpeg4 (Advanced Simple Profile) (XVID / 0x44495658), yuv420p, 712x424 [SAR 1:1 DAR 89:53], 25 tbr, 25 tbn, 25 tbc
+    Stream #0:1: Audio: mp3 (U[0][0][0] / 0x0055), 48000 Hz, stereo, s16, 160 kb/s
 At least one output file must be specified

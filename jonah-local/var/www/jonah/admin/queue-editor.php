@@ -73,8 +73,8 @@ $(document).ready(function() {
 
 		$('#table-3').tableDnD({
 		onDrop: function(table, row) {
-		alert("Re-ordering on server");
-		alert("Result of $.tableDnD.serialise() is "+$.tableDnD.serialize());		    
+		// alert("Re-ordering on server");
+		// alert("Result of $.tableDnD.serialise() is "+$.tableDnD.serialize());		    
 		$('#AjaxResult').load("/jonah/server/ajaxTest.php?"+$.tableDnD.serialize());        
 		}
 	});
@@ -97,7 +97,7 @@ $(document).ready(function() {
 <td>
 
 <!-- // sidebar -->
-<? include ('/var/www/jonah/inc/sidebar.php'); ?>
+<? include ('/var/www/jonah/inc/sidebar2.php'); ?>
 <div id="" style="border:1px solid silver">
 <table><tr><td>No. of Parallel Transcodes</td></tr>
 <tr><td><img src='/jonah/images/full.png' /><img src='/jonah/images/blank.png' /><img src='/jonah/images/blank.png' /><img src='/jonah/images/blank.png' /><img src='/jonah/images/blank.png' /><img src='/jonah/images/blank.png' /></td></tr></table>

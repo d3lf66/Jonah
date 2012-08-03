@@ -9,13 +9,19 @@ ffmpeg version 0.10.4-6:0.10.4-0ubuntu0jon2 Copyright (c) 2000-2012 the FFmpeg d
   libswscale      2.  1.100 /  2.  1.100
   libswresample   0.  6.100 /  0.  6.100
   libpostproc    52.  0.100 / 52.  0.100
-Input #0, asf, from '/home/sony/pink - who knew.wmv':
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from '/home/mtv/Motion Detected.mp4':
   Metadata:
-    title           : RCA Label Group
-    WMFSDKVersion   : 9.00.00.2980
-    WMFSDKNeeded    : 0.0.0.0000
-    IsVBR           : 0
-  Duration: 00:03:35.52, start: 0.000000, bitrate: 467 kb/s
-    Stream #0:0(eng): Audio: wmav2 (a[1][0][0] / 0x0161), 44100 Hz, 2 channels, s16, 64 kb/s
-    Stream #0:1(eng): Video: wmv3 (Main) (WMV3 / 0x33564D57), yuv420p, 320x240, 400 kb/s, 25 tbr, 1k tbn, 1k tbc
+    major_brand     : mp42
+    minor_version   : 18743379
+    compatible_brands: mp42isom
+    creation_time   : 2011-09-13 13:08:21
+  Duration: 00:00:24.20, start: 0.000000, bitrate: 862 kb/s
+    Stream #0:0(eng): Audio: aac (mp4a / 0x6134706D), 44100 Hz, stereo, s16, 95 kb/s
+    Metadata:
+      creation_time   : 2011-09-13 13:08:21
+      handler_name    : Sound Media Handler
+    Stream #0:1(eng): Video: h264 (Main) (avc1 / 0x31637661), yuv420p, 720x576 [SAR 1:1 DAR 5:4], 763 kb/s, 15 fps, 15 tbr, 15 tbn, 30 tbc
+    Metadata:
+      creation_time   : 2011-09-13 13:08:21
+      handler_name    : Video Media Handler
 At least one output file must be specified
